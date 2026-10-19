@@ -21,7 +21,8 @@ Quelle: Geschäfts- und Nachhaltigkeitsbericht 2025 (deutsch)
 
 | Kennzahl | Wert 2025 | Einheit | Seite |
 |---|---|---|---|
-| Brutto-Scope-1-Emissionen (weltweit) | 59,4 | Mio. t CO₂e | 117 |
+| Brutto-Scope-1-Emissionen Konzern | 61,3 | Mio. t CO₂e | 120 (ESRS E1-6) |
+| davon Geschäftsbereich Zement | 59,4 | Mio. t CO₂e | 117 |
 | Netto-Scope-1-Emissionen (weltweit) | 55,0 | Mio. t CO₂ | 117 |
 | Davon in Ländern mit CO₂-Preis (v. a. Europa) | 22,2 | Mio. t CO₂e | 121 |
 | Durchschnittlicher CO₂-Preis 2025 | 73 | €/t | 48 |
@@ -52,3 +53,12 @@ Quelle: Geschäfts- und Nachhaltigkeitsbericht 2025 (deutsch)
 | Emissionen nach 2030 | Szenarien | | A: linear auf 0 bis 2050 (Net-Zero-Ziel); B: konstant auf Niveau 2030 |
 | Restwert (nur Szenario B) | ewige Rente | | Kosten 2050 nach Steuern ÷ WACC |
 | Weitergabe an Kunden | 0 / 30 / 60 / 100 | % | historisch 20–40 % bei Zement (Öko-Institut/CE Delft 2015); höher mit CBAM |
+
+## KI-Extraktion (Gemini Flash), Heidelberg-Bericht 2025
+
+| Lauf | Genauigkeit | Prüfspur | Änderung |
+|---|---|---|---|
+| 1 | 4/7 | 7/7 | Ausgangsversion |
+| 2 | 7/7 | 7/7 | Vorzeichen ignoriert; Referenz Scope 1 = Konzernwert 61,3 (S. 120); Frage präzisiert: RCO statt EBIT (EBIT = 3.118, S. 49) |
+
+Hinweis: Lauf 2 wurde am selben Bericht nachgeschärft (Gefahr von Overfitting). Der eigentliche Test folgt an Berichten anderer Konzerne.

@@ -30,6 +30,7 @@ k = KONZERNE[name]
 tabelle = jahresrechnung(k, preis_2030, anstieg, weitergabe, ziel, CBAM_PFADE[cbam_name])
 barwert = barwert_gesamt(k, tabelle)
 anteil = barwert / unternehmenswert(k) * 100
+diagramm = tabelle.set_index(tabelle.index.astype(str))   # Jahre als Text, sonst "2,026"
 
 # --- Kennzahlen oben ---------------------------------------------------
 spalte1, spalte2, spalte3 = st.columns(3)
@@ -40,10 +41,11 @@ spalte3.metric("CO₂-Kosten 2030 (vor Steuern)", f"{tabelle.loc[2030, 'Kosten']
 reiter1, reiter2, reiter3 = st.tabs(["Kostenverlauf", "Unsicherheit", "KI-Prüfspur"])
 
 with reiter1:
+    diagramm = tabelle.set_index(tabelle.index.astype(str))   # Jahre als Text, sonst "2,026"
     st.subheader("Emissionen und Gratiszuteilung (Mio. t CO₂)")
-    st.line_chart(tabelle[["Emissionen", "Gratiszuteilung"]])
+    st.line_chart(diagramm[["Emissionen", "Gratiszuteilung"]])
     st.subheader("CO₂-Kosten vor Steuern (Mio. €)")
-    st.bar_chart(tabelle["Kosten"])
+    st.bar_chart(diagramm["Kosten"])
     with st.expander("Jahrestabelle anzeigen"):
         st.dataframe(tabelle.round(1))
 

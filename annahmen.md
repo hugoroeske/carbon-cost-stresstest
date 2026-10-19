@@ -44,3 +44,10 @@ Quelle: Geschäfts- und Nachhaltigkeitsbericht 2025 (deutsch)
 | Fehlende Emissionen 2025 = Wert 2024 | Devnya, Beaucaire, Villiers-au-Bouin: offen, 2025 noch nicht gemeldet; als „geschätzt“ markiert |
 | Geisterwerke nicht fortschreiben | Añorga, Beffes, Gargenville: Zuteilung ohne Produktion, wird von der EU gekürzt |
 | Offener Punkt | Deutsche Werke fehlen komplett (Betreibername ohne „Heidelberg“) → KI-Zuordnung |
+| WACC nach Steuern | 8,1 | % | 248 (CGU Deutschland) |
+| CBAM-Ausstieg Gratiszuteilung | siehe Tabelle | | geltendes Recht vs. Vorschlag COM(2026) 616 |
+| Börsenwert | 25.300 | Mio. € | 143,80 € × 175,8 Mio. Aktien, onvista 19.10.2026 |
+| Unternehmenswert | 31.015 | Mio. € | Börsenwert + Nettofinanzschulden |
+| CO₂-Preis nach 2030 | +5,40 | €/t pro Jahr | eigene Fortschreibung (2050: ~208 €/t) |
+| Emissionen nach 2030 | Szenarien | | A: linear auf 0 bis 2050 (Net-Zero-Ziel); B: konstant auf Niveau 2030 |
+| Restwert (nur Szenario B) | ewige Rente | | Kosten 2050 nach Steuern ÷ WACC |

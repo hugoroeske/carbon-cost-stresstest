@@ -38,7 +38,8 @@ print(f"Fertig: {len(df)} Zeilen eingelesen.")
 zuteilung_spalten = ["ALLOCATION_2025", "ALLOCATION_RESERVE_2025",
                      "ALLOCATION_TRANSITIONAL_2025"]
 df = df[["REGISTRY_CODE", "IDENTIFIER_IN_REG", "INSTALLATION_NAME",
-         "MAIN_ACTIVITY_TYPE_CODE", "VERIFIED_EMISSIONS_2025"]
+         "MAIN_ACTIVITY_TYPE_CODE", "VERIFIED_EMISSIONS_2025",
+         "VERIFIED_EMISSIONS_2024", "ACCOUNT_CLOSURE"]
         + zuteilung_spalten]
 
 # --- 3. "n/a" in echte Zahlen umwandeln -------------------------------
@@ -52,15 +53,28 @@ for spalte in ["VERIFIED_EMISSIONS_2025"] + zuteilung_spalten:
 treffer = df["IDENTIFIER_IN_REG"].str.contains("heidelberg", case=False, na=False)
 hm = df[treffer].copy()
 
+# --- 4b. Bereinigung ---------------------------------------------------
+# Regel 1: Nur Zementklinker-Werke (Code 29). Schließt z. B. das
+#          Heizkraftwerk der STADT Heidelberg aus (Code 20).
+hm = hm[hm["MAIN_ACTIVITY_TYPE_CODE"].astype(str) == "29"]
+
+# Regel 2: Nur offene Anlagen (schließt das stillgelegte Werk Cruas aus).
+hm = hm[hm["ACCOUNT_CLOSURE"].astype(str).str.upper() == "OPEN"].copy()
+
+# Regel 3: Fehlende Emissionen 2025 durch den Vorjahreswert schätzen –
+#          und kennzeichnen, damit die Schätzung sichtbar bleibt.
+hm["VERIFIED_EMISSIONS_2024"] = pd.to_numeric(hm["VERIFIED_EMISSIONS_2024"], errors="coerce")
+hm["GESCHAETZT"] = hm["VERIFIED_EMISSIONS_2025"].isna()
+hm["VERIFIED_EMISSIONS_2025"] = (hm["VERIFIED_EMISSIONS_2025"]
+                                 .fillna(hm["VERIFIED_EMISSIONS_2024"])
+                                 .fillna(0))
+print(f"Nach Bereinigung: {len(hm)} Anlagen, davon {hm['GESCHAETZT'].sum()} geschätzt")
+
 # --- 5. Zuteilung und Zukaufbedarf pro Anlage -------------------------
 hm["ZUTEILUNG"] = hm[zuteilung_spalten].sum(axis=1)
 hm["ZUKAUF"] = hm["VERIFIED_EMISSIONS_2025"] - hm["ZUTEILUNG"]
 
-# --- 5b. Prüfung: Anlagen mit Zuteilung, aber ohne Emissionen 2025 -----
-ohne_emissionen = hm[hm["VERIFIED_EMISSIONS_2025"].isna()]
-print(f"\nAnlagen ohne Emissionsangabe 2025: {len(ohne_emissionen)}")
-print(ohne_emissionen[["REGISTRY_CODE", "IDENTIFIER_IN_REG",
-                       "INSTALLATION_NAME", "ZUTEILUNG"]])
+
 
 # --- 6. Ergebnis ausgeben ---------------------------------------------
 nach_land = (hm.groupby("REGISTRY_CODE")

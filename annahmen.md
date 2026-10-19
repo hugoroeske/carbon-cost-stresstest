@@ -34,3 +34,13 @@ Quelle: Geschäfts- und Nachhaltigkeitsbericht 2025 (deutsch)
 | Spezifische Netto-Scope-1-Emissionen | < 400 kg CO₂/t (2025: 512) | 42 |
 | Klinkeranteil im Zement | 64 % (2025: 68,2 %) | 114 |
 | Alternative Brennstoffe | > 50 % (2025: 34,1 %) | 114 |
+
+## Datenbereinigung EU-ETS (Prüfspur)
+
+| Entscheidung | Begründung |
+|---|---|
+| Nur Branchencode 29 (Zementklinker) | Textsuche fand Heizkraftwerk der Stadt Heidelberg (Code 20) – falsch-positiv |
+| Nur offene Anlagen | Werk Cruas (FR) am 26.02.2025 geschlossen |
+| Fehlende Emissionen 2025 = Wert 2024 | Devnya, Beaucaire, Villiers-au-Bouin: offen, 2025 noch nicht gemeldet; als „geschätzt“ markiert |
+| Geisterwerke nicht fortschreiben | Añorga, Beffes, Gargenville: Zuteilung ohne Produktion, wird von der EU gekürzt |
+| Offener Punkt | Deutsche Werke fehlen komplett (Betreibername ohne „Heidelberg“) → KI-Zuordnung |

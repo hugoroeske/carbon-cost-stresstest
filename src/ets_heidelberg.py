@@ -50,7 +50,7 @@ for spalte in ["VERIFIED_EMISSIONS_2025"] + zuteilung_spalten:
 
 # --- 4. Heidelberg-Anlagen finden -------------------------------------
 # Wir suchen "heidelberg" im Betreibernamen, Groß-/Kleinschreibung egal.
-treffer = df["IDENTIFIER_IN_REG"].str.contains("heidelberg", case=False, na=False)
+treffer = df["IDENTIFIER_IN_REG"].str.contains("heidelberg|HMAG_", case=False, na=False)
 hm = df[treffer].copy()
 
 # --- 4b. Bereinigung ---------------------------------------------------

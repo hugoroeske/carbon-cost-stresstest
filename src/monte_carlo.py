@@ -82,3 +82,49 @@ plt.legend()
 plt.tight_layout()
 plt.savefig("ergebnisse/monte_carlo_histogramm.png", dpi=150)
 print("\nGrafik gespeichert: ergebnisse/monte_carlo_histogramm.png")
+
+# --- Sensitivitätsanalyse (Tornado) -------------------------------------
+# Alle Annahmen auf ihren Median setzen, dann jeweils EINE Annahme auf ihr
+# 5-%- bzw. 95-%-Quantil verschieben und messen, wie stark sich das Ergebnis ändert.
+basis = dict(p2030=np.median(preis_2030), anstieg=np.median(anstieg_ab_2030),
+             w=np.median(weitergabe), ziel=np.median(zielerreichung),
+             cbam=CBAM_GESETZ)
+
+
+def in_prozent(**aenderung):
+    """Barwert in % des Unternehmenswerts: Basiswerte, ggf. mit Änderung."""
+    werte = {**basis, **aenderung}
+    return barwert_co2(**werte) / UNTERNEHMENSWERT * 100
+
+
+tests = [("CO2-Preis 2030", "p2030", preis_2030),
+         ("Preisanstieg ab 2030", "anstieg", anstieg_ab_2030),
+         ("Weitergabe an Kunden", "w", weitergabe),
+         ("Erreichung Klimaziel", "ziel", zielerreichung)]
+
+tornado = []
+for name, schluessel, werte in tests:
+    niedrig, hoch = np.percentile(werte, [5, 95])
+    ergebnis_a = in_prozent(**{schluessel: niedrig})
+    ergebnis_b = in_prozent(**{schluessel: hoch})
+    tornado.append((name, min(ergebnis_a, ergebnis_b), max(ergebnis_a, ergebnis_b)))
+tornado.append(("CBAM-Pfad", in_prozent(cbam=CBAM_VORSCHLAG), in_prozent(cbam=CBAM_GESETZ)))
+
+tornado.sort(key=lambda zeile: zeile[2] - zeile[1])   # kleinste Spanne zuerst
+
+basiswert = in_prozent()
+print(f"\nSensitivität (Basis: alle Annahmen auf Median = {basiswert:.1f} %)")
+for name, tief, hoch in reversed(tornado):
+    print(f"  {name:22} {tief:5.1f} % bis {hoch:5.1f} %   Spanne {hoch - tief:4.1f} Pp.")
+
+plt.figure(figsize=(8, 4))
+for i, (name, tief, hoch) in enumerate(tornado):
+    plt.barh(i, hoch - tief, left=tief, color="#2a6f97")
+plt.yticks(range(len(tornado)), [zeile[0] for zeile in tornado])
+plt.axvline(basiswert, color="black", linestyle="--", label=f"Basis {basiswert:.1f} %")
+plt.xlabel("Barwert der CO2-Kosten in % des Unternehmenswerts")
+plt.title("Welche Annahme treibt das Ergebnis? (5-%- bis 95-%-Quantil)")
+plt.legend()
+plt.tight_layout()
+plt.savefig("ergebnisse/tornado.png", dpi=150)
+print("\nGrafik gespeichert: ergebnisse/tornado.png")

@@ -51,3 +51,4 @@ Quelle: Geschäfts- und Nachhaltigkeitsbericht 2025 (deutsch)
 | CO₂-Preis nach 2030 | +5,40 | €/t pro Jahr | eigene Fortschreibung (2050: ~208 €/t) |
 | Emissionen nach 2030 | Szenarien | | A: linear auf 0 bis 2050 (Net-Zero-Ziel); B: konstant auf Niveau 2030 |
 | Restwert (nur Szenario B) | ewige Rente | | Kosten 2050 nach Steuern ÷ WACC |
+| Weitergabe an Kunden | 0 / 30 / 60 / 100 | % | historisch 20–40 % bei Zement (Öko-Institut/CE Delft 2015); höher mit CBAM |

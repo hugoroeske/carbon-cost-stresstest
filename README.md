@@ -36,6 +36,7 @@ Alle Annahmen mit Quelle: [`annahmen.md`](annahmen.md)
 
 ## Selbst ausführen
 pip install -r requirements.txt
+
 streamlit run app.py
 
 ## Grenzen

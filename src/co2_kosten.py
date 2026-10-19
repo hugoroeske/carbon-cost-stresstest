@@ -48,7 +48,7 @@ def emissionen(jahr, ziel_erreicht):
     return emissionen_2030
 
 
-def rechne(cbam_faktoren, ziel_erreicht):
+def rechne(cbam_faktoren, ziel_erreicht, weitergabe=WEITERGABE):
     """Jahresrechnung 2026-2050. Gibt Tabelle und Gesamtbarwert zurück."""
     zeilen = []
     for jahr in JAHRE:
@@ -56,7 +56,7 @@ def rechne(cbam_faktoren, ziel_erreicht):
         e = emissionen(jahr, ziel_erreicht)
         zuteilung = EMISSIONEN_2025 * DECKUNGSGRAD * cbam_faktoren.get(jahr, 0)
         zukauf = max(e - zuteilung, 0)
-        kosten = zukauf * co2_preis(jahr) * (1 - WEITERGABE)
+        kosten = zukauf * co2_preis(jahr) * (1 - weitergabe)
         nach_steuern = kosten * (1 - STEUERSATZ)
         barwert = nach_steuern / (1 + WACC) ** t
         zeilen.append([jahr, e, zuteilung, zukauf, kosten, nach_steuern, barwert])
@@ -73,19 +73,22 @@ def rechne(cbam_faktoren, ziel_erreicht):
     return tabelle, tabelle["Barwert"].sum() + restwert
 
 
-# --- Vier Szenarien rechnen --------------------------------------------
+# # --- Szenarien rechnen: CBAM-Pfad x Klimaziel x Weitergabe -------------
+WEITERGABE_SZENARIEN = [0.0, 0.3, 0.6, 1.0]
+
 ergebnisse = []
 for cbam_name, cbam in [("Geltendes Recht", CBAM_GESETZ),
                         ("Vorschlag 2026", CBAM_VORSCHLAG)]:
     for ziel_name, ziel in [("Ziel erreicht", True), ("Ziel verfehlt", False)]:
-        _, barwert = rechne(cbam, ziel)
-        ergebnisse.append([cbam_name, ziel_name, barwert,
-                           barwert / UNTERNEHMENSWERT * 100,
-                           barwert / BOERSENWERT * 100])
+        zeile = [cbam_name, ziel_name]
+        for w in WEITERGABE_SZENARIEN:
+            _, barwert = rechne(cbam, ziel, w)
+            zeile.append(barwert / UNTERNEHMENSWERT * 100)
+        ergebnisse.append(zeile)
 
-uebersicht = pd.DataFrame(ergebnisse, columns=[
-    "CBAM-Pfad", "Klimaziel 2050", "Barwert Mio€",
-    "% Unternehmenswert", "% Börsenwert"])
-print(f"\nUnternehmenswert: {UNTERNEHMENSWERT:,} Mio. €  "
-      f"(Börsenwert {BOERSENWERT:,} + Nettofinanzschulden {NETTOFINANZSCHULDEN:,})\n")
+spalten = ["CBAM-Pfad", "Klimaziel 2050"] + [f"{w:.0%} weiter" for w in WEITERGABE_SZENARIEN]
+uebersicht = pd.DataFrame(ergebnisse, columns=spalten)
+
+print(f"\nUnternehmenswert: {UNTERNEHMENSWERT:,} Mio. €")
+print("Barwert der CO2-Kosten in % des Unternehmenswerts:\n")
 print(uebersicht.round(1).to_string(index=False))

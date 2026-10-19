@@ -35,8 +35,8 @@ Alle Annahmen mit Quelle: [`annahmen.md`](annahmen.md)
 | `annahmen.md` | Alle Annahmen, Quellen und Datenentscheidungen |
 
 ## Selbst ausführen
-
-
+pip install -r requirements.txt
+streamlit run app.py
 
 ## Grenzen
 

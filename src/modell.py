@@ -17,6 +17,7 @@ CBAM_PFADE = {
 }
 
 # Je Konzern die festen Annahmen (Werte in Mio. € bzw. Mio. t)
+# Je Konzern die festen Annahmen (Werte in Mio. € bzw. Mio. t)
 KONZERNE = {
     "Heidelberg Materials": {
         "emissionen_2025": 22.2,      # Länder mit CO2-Preis (GB S. 121)
@@ -27,13 +28,27 @@ KONZERNE = {
         "rco_2025": 3381,             # GB S. 338
         "boersenwert": 25300,         # onvista, 19.10.2026
         "nettofinanzschulden": 5715,  # GB S. 338
+        "pensionen": 624,             # GB S. 57 / Bilanz S. 216
         "pruefspur": "ergebnisse/ki_extraktion_heidelberg.csv",
+    },
+    "Thyssenkrupp": {
+        "emissionen_2025": 17.80,     # ETS 2025 inkl. 50 % HKM (src/ets_thyssenkrupp.py)
+        "reduktion_bis_2030": 0.058,  # Ziel Scope 1+2: 21,0 -> 15,6 Mio. t bis 2029/30 (GB S. 123)
+        "deckungsgrad": 1.05,         # 18,61 / 17,80 (ETS-Auswertung)
+        "steuersatz": 0.316,          # erwarteter Steuersatz Deutschland (GB S. 321)
+        "wacc": 0.076,                # nach Steuern, Steel Europe, Test Q4 (GB S. 259)
+        "rco_2025": 640,              # bereinigtes EBIT (GB S. 2)
+        "boersenwert": 8634,          # 622,5 Mio. Aktien x Kurs
+        "nettofinanzschulden": -4862, # negativ = Netto-Finanzguthaben (GB S. 2)
+        "pensionen": 5298,            # GB S. 329
+        "pruefspur": "ergebnisse/ki_extraktion_thyssenkrupp.csv",
     },
 }
 
 
 def unternehmenswert(k):
-    return k["boersenwert"] + k["nettofinanzschulden"]
+    """Börsenwert + Nettofinanzschulden + Pensionen."""
+    return k["boersenwert"] + k["nettofinanzschulden"] + k["pensionen"]
 
 
 def jahresrechnung(k, preis_2030, anstieg, weitergabe, zielerreichung, cbam):

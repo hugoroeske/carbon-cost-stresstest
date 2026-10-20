@@ -16,6 +16,7 @@ Quelle: Geschäfts- und Nachhaltigkeitsbericht 2025 (deutsch)
 | Effektive Steuerquote | 25,2 | % | 241 |
 | Nettofinanzschulden | 5.715 | Mio. € | 338 |
 | RCO Europa | 1.395 | Mio. € | 339 |
+| Pensionsrückstellungen | 624 | Mio. € | 57 |
 
 ## CO₂
 
@@ -115,3 +116,7 @@ Unsichere Zuordnungen (über Abstimmung plausibilisiert, nicht bewiesen):
 Kokerei Schwelgern (Konto 83), Kraftwerk Hamborn Block 5, Dampfkesselanlage Hamborn, Glocke Duisburg (Konto 71, HKM).
 Nicht zugeordnet: kleine Duisburger Anlagen mit rund 0,3 Mio. t (u. a. „Stahlwerk Duisburg“).
 Hinweis: Zuteilung liegt beim Hüttenwerk, Emissionen bei den Kraftwerken, daher Auswertung je Standort.
+
+| Börsenwert Finanzen.net/ 20/10/2026 | 8.634 | Mio. € | 622,5 Mio. Aktien × 13,87 € |
+| Unternehmenswert (Börsenwert + Pensionen − Netto-Finanzguthaben) | 9.070 | Mio. € | berechnet |
+| Reduktion Emissionen bis 2030 | 5,8 | % p. a. | aus Ziel S. 123 |

@@ -120,3 +120,16 @@ Hinweis: Zuteilung liegt beim Hüttenwerk, Emissionen bei den Kraftwerken, daher
 | Börsenwert Finanzen.net/ 20/10/2026 | 8.634 | Mio. € | 622,5 Mio. Aktien × 13,87 € |
 | Unternehmenswert (Börsenwert + Pensionen − Netto-Finanzguthaben) | 9.070 | Mio. € | berechnet |
 | Reduktion Emissionen bis 2030 | 5,8 | % p. a. | aus Ziel S. 123 |
+
+# Unternehmensszenarien (alle Konzerne)
+
+Einstellbar in der App unter „Unternehmensszenarien“. Standardwerte = Basisfall, das Ergebnis ändert sich dann nicht.
+
+| Szenario | Standard | Wirkung im Modell | Beispiel |
+|---|---|---|---|
+| Verzögerung der Emissionssenkung | 0 Jahre | Emissionen bleiben n Jahre auf dem Stand 2025, danach läuft der Pfad um n Jahre verschoben; das Ziel 2050 wird bis 2050 nicht ganz erreicht | DR-Anlage Duisburg verzögert sich |
+| Anteil Emissionen mit CO₂-Preis | 100 % | Emissionen und Gratiszuteilung × Anteil | Werke außerhalb der EU; bei Heidelberg (22,2 Mio. t) und Thyssenkrupp (17,8 Mio. t) schon berücksichtigt |
+| Abspaltung: Anteil Emissionen | 0 % | Emissionen und Gratiszuteilung × (1 − Anteil) | Verselbstständigung von Steel Europe |
+| Abspaltung: Anteil Unternehmenswert | 0 % | Unternehmenswert × (1 − Anteil), höchstens 90 % | eigene Annahme, nicht aus dem Bericht berechnet |
+
+Prüfung (20.10.2026): Bei Standardwerten sind Jahrestabelle, Monte Carlo und Tornado für beide Konzerne exakt gleich wie vor der Änderung.

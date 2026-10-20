@@ -62,3 +62,56 @@ Quelle: Geschäfts- und Nachhaltigkeitsbericht 2025 (deutsch)
 | 2 | 7/7 | 7/7 | Vorzeichen ignoriert; Referenz Scope 1 = Konzernwert 61,3 (S. 120); Frage präzisiert: RCO statt EBIT (EBIT = 3.118, S. 49) |
 
 Hinweis: Lauf 2 wurde am selben Bericht nachgeschärft (Gefahr von Overfitting). Der eigentliche Test folgt an Berichten anderer Konzerne.
+
+# Annahmen – thyssenkrupp (Geschäftsjahr 2024/2025, Stichtag 30.09.2025)
+
+Quelle: Geschäftsbericht 2024/2025 (deutsch). Abschlussprüfer: KPMG.
+
+| Kennzahl | Wert | Einheit | Seite |
+|---|---|---|---|
+| Umsatz | 32.837 | Mio. € | 2, 329 |
+| Bereinigtes EBIT | 640 | Mio. € | 2 |
+| EBIT | 76 | Mio. € | 329 |
+| EBITDA | 1.490 | Mio. € | 329 |
+| Free Cashflow vor M&A | 363 | Mio. € | 2, 330 |
+| Netto-Finanzguthaben | 4.862 | Mio. € | 2, 330 |
+| Pensionsrückstellungen | 5.298 | Mio. € | 329 |
+| Marktkapitalisierung 30.09.2025 | 7.271 | Mio. € | 2 |
+| Steuersatz Deutschland (statt effektiv 48,7 %) | 31,6 | % | 321 |
+| WACC Konzern / Steel Europe | 11,0 / 12,0 | % | 48 |
+| Scope 1 brutto | 19,8 | Mio. t CO₂e | 123 |
+| Davon unter internem CO₂-Preis (EU-ETS) | ~16 | Mio. t CO₂e | 124 |
+| Interner CO₂-Preis | bis ~150 (2035), ~250 (2045) | €/t | 124 |
+| Klimaziel Stahl | −30,1 % je t Warmband bis 2030 ggü. 2018 | | 118 |
+| Anteil HKM | 50 | % | 268 |
+
+## Modellentscheidungen thyssenkrupp
+
+| Entscheidung | Begründung |
+|---|---|
+| Steuersatz 31,6 % statt effektiv 48,7 % | Effektive Quote durch Wertberichtigungen latenter Steuern verzerrt (S. 321) |
+| Unternehmenswert inkl. Pensionen | Pensionen sind wirtschaftlich schuldenähnlich |
+| Offen: Deckungsgrad Gratiszuteilung | Standortweise Aggregation im EU-ETS nötig (Hüttenwerk + Kraftwerke + Kokerei) |
+| Offen: aktueller Börsenwert | Stand Okt. 2026 recherchieren |
+| Offen: Szenario Abspaltung Steel Europe | Verkauf an Jindal im Mai 2026 abgebrochen; Ziel: Verselbstständigung mit Minderheitsanteil |
+
+| WACC nach Steuern, Steel Europe (Werthaltigkeitstest Q4) | 7,6 | % | 259 |
+| WACC laut Wertmanagement (tkVA) Konzern / Steel Europe, vermutlich vor Steuern | 11,0 / 12,0 | % | 48 |
+
+## Thyssenkrupp – EU-ETS-Zuordnung
+
+Abgrenzung wie im Bericht: Bilanzierungskreis der Finanzberichterstattung, HKM quotal 50 % (S. 120).
+Zuordnung über feste Tabelle in `src/ets_thyssenkrupp.py`, weil Konten teils anonym sind.
+
+| Größe | Wert | Einheit | Quelle |
+|---|---|---|---|
+| Emissionen 2025 (inkl. 50 % HKM) | 17,80 | Mio. t | ETS-Register |
+| Gratiszuteilung 2025 (inkl. 50 % HKM) | 18,61 | Mio. t | ETS-Register |
+| Deckungsgrad 2025 | 105 | % | berechnet |
+| Abstimmung: ETS 2024 vs. Bericht Scope 1 | 19,48 vs. 19,8 (−1,6 %) | Mio. t | S. 123 |
+| Aktien im Umlauf | 622,5 | Mio. Stück | S. 17 |
+
+Unsichere Zuordnungen (über Abstimmung plausibilisiert, nicht bewiesen):
+Kokerei Schwelgern (Konto 83), Kraftwerk Hamborn Block 5, Dampfkesselanlage Hamborn, Glocke Duisburg (Konto 71, HKM).
+Nicht zugeordnet: kleine Duisburger Anlagen mit rund 0,3 Mio. t (u. a. „Stahlwerk Duisburg“).
+Hinweis: Zuteilung liegt beim Hüttenwerk, Emissionen bei den Kraftwerken, daher Auswertung je Standort.

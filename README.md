@@ -23,6 +23,24 @@ Default assumptions: carbon price €100/t in 2030, 40 % pass-through to custome
 
 These are model results under stated assumptions, not a forecast of share prices and not investment advice.
 
+## Ranking: who is hit hardest?
+
+Seven EU steel, cement and aluminium companies, all calculated with the same assumptions (8 % discount rate, emissions held at the 2025 level, 40 % pass-through):
+
+| Rank | Company | Sector | Free allocation coverage 2025 | PV of carbon costs | % of enterprise value |
+|---|---|---|---|---|---|
+| 1 | Thyssenkrupp | Steel | 105 % | €6.4bn | 71 % |
+| 2 | Salzgitter | Steel | 93 % | €3.3bn | 67 % |
+| 3 | voestalpine | Steel | 77 % | €4.9bn | 50 % |
+| 4 | SSAB | Steel | 91 % | €3.3bn | 40 % |
+| 5 | ArcelorMittal | Steel | 133 % | €9.7bn | 19 % |
+| 6 | Holcim | Cement | 109 % | €4.3bn | 10 % |
+| 7 | Norsk Hydro | Aluminium | 89 % | €0.7bn | 5 % |
+
+Thyssenkrupp shows 71 % here but 48 % in the detailed model above, because the ranking uses common assumptions (8 % discount rate instead of 7.6 %, 25 % tax, no emission reductions until 2030).
+
+The order is the same under all tested variants (pass-through 20–60 %, Commission proposal, 10 % WACC, €150/t). The key driver is how large EU emissions are relative to enterprise value: integrated steelmakers with a small market value carry the largest exposure, while diversified groups dilute it. Details and limitations in the app (page "Ranking") and in [`annahmen.md`](annahmen.md).
+
 ## Method
 
 1. **Data:** installation-level verified emissions and free allocation from the EU Union Registry; financial figures from annual reports.
@@ -40,6 +58,8 @@ All assumptions with sources: [`annahmen.md`](annahmen.md)
 |---|---|
 | `app.py` | Web app (Streamlit) |
 | `pages/1_Bericht_auswerten.py` | Upload page: analyse a new annual report (runs locally only) |
+| `pages/2_Ranking.py` | Ranking of companies with common assumptions |
+| `src/ranking_daten.json` | Ranking input data with sources |
 | `src/modell.py` | Core model: annual cost path, present value, Monte Carlo, tornado, scenarios |
 | `src/ets_thyssenkrupp.py` | EU ETS matching and reconciliation for Thyssenkrupp |
 | `src/ets_suche.py` | Search the EU ETS registry for a new company |

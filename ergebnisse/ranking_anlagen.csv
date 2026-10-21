@@ -1,0 +1,100 @@
+Konzern,Land,Konto,Anlage,Anteil,Emissionen_2025_t,Emissionen_2025_geschaetzt,Zuteilung_2025_t,Zuordnung_sicher
+Salzgitter,DE,Glocke,Glocke Salzgitter,1.0,3497812.0,False,6050777.0,True
+Salzgitter,DE,Peiner Träger GmbH,Elektrostahlwerk - einheitliche Anlage,1.0,120506.0,False,110124.0,True
+Salzgitter,DE,Ilsenburger Grobblech GmbH,Grobblechwalzwerk,1.0,79680.0,False,63970.0,True
+Salzgitter,DE,Salzgitter Mannesmann Grobblech GmbH,Blechwalzwerk,1.0,37742.0,False,26062.0,True
+Salzgitter,DE,Kraftwerk Hallendorf,Kraftwerk Hallendorf,1.0,3153899.0,False,128103.0,False
+Salzgitter,DE,71 - Anlagenkonto,Glocke Duisburg,0.3,3901188.0,False,6285941.0,False
+Salzgitter,DE,HKM Kraftwerk Anlagennummer 1504,Kraftwerk Huckingen,0.3,2541395.0,False,628.0,True
+Salzgitter,DE,HKM KMT-Anlage,Kohlenmahl- und Trocknungsanlage,0.3,57344.0,False,0.0,True
+voestalpine,AT,voestalpine Böhler Edelstahl,Stahlproduktion Böhler Edelstahl Kapfenberg,1.0,115343.0,False,87819.0,True
+voestalpine,AT,Voestalpine Stahl Linz,Voestalpine Stahl Linz,1.0,8866634.0,False,6860680.0,True
+voestalpine,AT,voestalpine BÖHLER Bleche GmbH & Co KG,voestalpine Böhler Bleche - Hönigsberg,1.0,9264.0,False,6902.0,True
+voestalpine,AT,voestalpine Rail Technology GmbH,voestalpine Rail Technology GmbH,1.0,47950.0,False,33455.0,True
+voestalpine,AT,voestalpine Stahl Donawitz GmbH,voestalpine Stahl Donawitz GmbH,1.0,2788988.0,False,2085730.0,True
+voestalpine,AT,voestalpine Tubulars GmbH & Co KG Kindberg,voestalpine Tubulars GmbH & Co KG,1.0,59372.0,False,50691.0,True
+voestalpine,AT,voestalpine Wire Rod Austria GmbH,voestalpine Wire Rod Austria GmbH,1.0,36036.0,False,26010.0,True
+voestalpine,AT,VOEST-Alpine Stahl Linz (Kalk) Steyrling,voestalpine Stahl GmbH - Kalkwerk Steyrling,1.0,321951.0,False,256991.0,True
+voestalpine,AT,Boehler Schmiedetechnik,voestalpine Böhler Aerospace,1.0,13533.0,False,3440.0,True
+SSAB,SE,SSAB Finspång,SSAB Finspång,1.0,9499.0,False,6916.0,True
+SSAB,SE,SSAB Luleå,SSAB Luleå,1.0,2882766.0,False,2789480.0,True
+SSAB,SE,SSAB Oxelösund,SSAB Oxelösund,1.0,1537703.0,False,1435245.0,True
+SSAB,SE,SSAB Tunnplåt i Borlänge,SSAB Tunnplåt i Borlänge,1.0,225076.0,False,165404.0,True
+SSAB,FI,Raahen terästehdas:FI373,Raahen terästehdas,1.0,3844594.0,False,3302175.0,True
+SSAB,FI,Hämeenlinnan tehdas:FI374,Hämeenlinnan tehtaat,1.0,70687.0,False,58735.0,True
+ArcelorMittal,BE,0110 ArcelorMittal Gent,ArcelorMittal Gent,1.0,4758283.0,False,7486112.0,True
+ArcelorMittal,ES,"ARCELORMITTAL ESPAÑA, S.A.","ARCELORMITTAL ESPAÑA, S.A.",1.0,4673784.0,False,5361058.0,True
+ArcelorMittal,ES,"ARCELORMITTAL ESPAÑA, S.A.","ARCELORMITTAL ESPAÑA, S.A.",1.0,52603.0,False,42563.0,True
+ArcelorMittal,ES,"ArcelorMittal España, S.A.-Fáb. Etxebarri","ArcelorMittal España, S.A.-Fáb. Etxebarri",1.0,20867.0,False,15987.0,True
+ArcelorMittal,ES,"ArcelorMittal Lesaka, S.A.","ArcelorMittal Lesaka, S.A.",1.0,15916.0,False,10226.0,True
+ArcelorMittal,ES,"Arcelormittal Sestao, S.L.U.","Arcelormittal Sestao, S.L.U",1.0,93639.0,False,56563.0,True
+ArcelorMittal,ES,"ARCELORMITTAL OLABERRÍA-BERGARA, S.L.U. - Fabrica de Bergara",Fábrica de Bergara,1.0,20345.0,False,14706.0,True
+ArcelorMittal,ES,"ARCELORMITTAL OLABERRÍA-BERGARA, S.L.U. - Fábrica de Olaberría",Fábrica de Olaberria,1.0,103105.0,False,84913.0,True
+ArcelorMittal,FR,ARCELORMITTAL Building Solutions France- Site 2,ARCELORMITTAL Building Solutions France- Site 2,1.0,11310.0,False,1763.0,True
+ArcelorMittal,FR,ARCELORMITTAL FRANCE- Basse Indre,ARCELORMITTAL FRANCE - Basse Indre,1.0,22693.0,False,15429.0,True
+ArcelorMittal,FR,ARCELORMITTAL GANDRANGE AMNEVILLE,ARCELORMITTAL GANDRANGE AMNEVILLE,1.0,15333.0,False,16732.0,True
+ArcelorMittal,FR,ARCELORMITTAL MEDITERRANEE,ARCELORMITTAL MEDITERRANEE,1.0,3547605.0,False,3596154.0,True
+ArcelorMittal,FR,ARCELORMITTAL FRANCE- Dunkerque,ArcelorMittal France- Dunkerque,1.0,5362700.0,False,6569630.0,True
+ArcelorMittal,FR,ARCELORMITTAL FRANCE- Florange,ArcelorMittal France- Florange,1.0,217237.0,False,168709.0,True
+ArcelorMittal,FR,ARCELORMITTAL FRANCE- Mardyck,ArcelorMittal France- Mardyck,1.0,62703.0,False,42755.0,True
+ArcelorMittal,FR,ARCELORMITTAL FRANCE- Montataire,ArcelorMittal France- Montataire,1.0,51283.0,False,36416.0,True
+ArcelorMittal,FR,ARCELORMITTAL Building Solutions France Site 1,Arcelormittal Building Solutions France- Site 1,1.0,22774.0,False,4349.0,True
+ArcelorMittal,LU,ArcelorMittal Rodange et Schifflange - Site de Rodange,AM Rodange et Schifflange - Site de Rodange,1.0,16493.0,True,12740.0,True
+ArcelorMittal,LU,31- ArcelorMittal Belval & Differd. Site de Belval,ArcelorMittal Belval & Differdange-Site de Belval,1.0,150167.0,True,130223.0,True
+ArcelorMittal,LU,30 - ArcelorMittal Belval et Differdange-Site Diff,ArcelorMittal Belval et Differdange - site Differd,1.0,145349.0,True,117840.0,True
+ArcelorMittal,PL,ELEKTROCIEPŁOWNIA ARCELORMITTAL SOSNOWIEC,ELEKTROCIEPŁOWNIA ARCELORMITTAL SOSNOWIEC,1.0,32171.0,True,2905.0,True
+ArcelorMittal,PL,ELEKTROCIEPŁOWNIA ARCELORMITTAL ZDZIESZOWICE,ELEKTROCIEPŁOWNIA ARCELORMITTAL ZDZIESZOWICE,1.0,224247.0,False,4242.0,True
+ArcelorMittal,PL,KOKSOWNIA ARCELORMITTAL KRAKÓW,KOKSOWNIA ARCELORMITTAL KRAKÓW,1.0,30436.0,True,43305.0,True
+ArcelorMittal,PL,KOKSOWNIA ARCELORMITTAL ZDZIESZOWICE,KOKSOWNIA ARCELORMITTAL ZDZIESZOWICE,1.0,437004.0,True,605677.0,True
+ArcelorMittal,PL,OBRÓBKA METALI ŻELAZNYCH ARCELORMITTAL ŚWIĘTOCHŁOWICE,OBRÓBKA METALI ŻELAZNYCH ARCELORMITTAL ŚWIĘTOCHŁOW,1.0,32947.0,True,28846.0,True
+ArcelorMittal,PL,SPIEKALNIA ARCELORMITTAL DĄBROWA GÓRNICZA,SPIEKALNIA ARCELORMITTAL DĄBROWA GÓRNICZA,1.0,985897.0,True,591244.0,True
+ArcelorMittal,PL,WALCOWNIA ARCELORMITTAL DĄBROWA GÓRNICZA,WALCOWNIA ARCELORMITTAL DĄBROWA GÓRNICZA,1.0,266343.0,True,133534.0,True
+ArcelorMittal,PL,WALCOWNIA ARCELORMITTAL SOSNOWIEC,WALCOWNIA ARCELORMITTAL SOSNOWIEC,1.0,37964.0,False,35052.0,True
+ArcelorMittal,PL,WALCOWNIA ARCELORMITTAL KRAKÓW,WALCOWNIE ARCELORMITTAL KRAKÓW,1.0,188433.0,False,147776.0,True
+ArcelorMittal,PL,WAPNIALNIA ARCELORMITTAL DĄBROWA GÓRNICZA,WAPNIALNIA ARCELORMITTAL DĄBROWA GÓRNICZA,1.0,280880.0,True,215658.0,True
+ArcelorMittal,PL,WIELKI PIEC STALOWNIA ARCELORMITTAL DĄBROWA GÓRNICZA,WIELKI PIEC STALOWNIA ARCELORMITTAL DĄBROWA GÓRN.,1.0,2419078.0,True,4619798.0,True
+ArcelorMittal,PL,Walcownia ArcelorMittal Chorzów,Walcownia ArcelorMittal Chorzów,1.0,7966.0,False,8240.0,True
+ArcelorMittal,CZ,AM Tub.Prod.Karviná,ArcelorMittal Tubular Products Karviná,1.0,1475.0,False,1208.0,True
+ArcelorMittal,IT,ETS AM Piombino,ArcelorMittal Piombino S.p.A.,1.0,6590.0,False,27735.0,True
+ArcelorMittal,RO,Operator Account,ARCELORMITTAL HUNEDOARA SA,1.0,17993.0,False,29402.0,True
+ArcelorMittal,RO,Operator Account,SC ARCELORMITTAL TUBULAR PRODUCTS ROMAN SA,1.0,22175.0,False,19305.0,True
+ArcelorMittal,DE,78 - Anlagenkonto,Einheitliche Anlage Bremen,1.0,2170849.0,False,4340247.0,False
+ArcelorMittal,DE,Anlagenkonto BRE.M.A,Warmwalzwerk,1.0,452420.0,False,242407.0,False
+ArcelorMittal,DE,Roheisen- und Stahlerzeugung,Roheisen-und Stahlerzeugung,1.0,1289771.0,False,2678779.0,False
+ArcelorMittal,DE,Drahtwalzwerk Standort Ruhrort,Drahtwalzwerk Standort Ruhrort,1.0,29199.0,False,23986.0,False
+ArcelorMittal,DE,Walzwerk Ruhrort,Walzwerk Ruhrort,1.0,16581.0,False,15941.0,False
+Holcim,BE,242 Holcim Cimenterie Obourg,Holcim Cimenterie Obourg,1.0,622346.0,False,635917.0,True
+Holcim,BG,Holcim Bulgaria -Beli Izvor,Holcim Bulgaria -Beli Izvor,1.0,390115.0,True,421514.0,True
+Holcim,CZ,"Holcim (Česko), a.s.","Holcim (Česko), a.s. - Cementárna Čížkovice",1.0,386464.0,False,341689.0,True
+Holcim,ES,"LafargeHolcim España, S.A.U. - Instalación de Jeréz de la Frontera",Instalación de Jerez de la Frontera,1.0,204.0,False,381.0,True
+Holcim,ES,"LafargeHolcim España, S.A.U.- Instalación de Carboneras",LafargeHolcim España SAU Instalación de Carboneras,1.0,671019.0,False,616607.0,True
+Holcim,ES,"LafargeHolcim España, S.A.U.- Instalación de Sagunto","LafargeHolcim España,SAU - Instalación de Sagunto",1.0,573761.0,False,529500.0,True
+Holcim,ES,"LafargeHolcim España, S.A.U.- Instalación de Villaluenga de la Sagra","LafargeHolcim España,SAU - Villaluenga de la Sagra",1.0,403593.0,False,529074.0,True
+Holcim,ES,"LafargeHolcim España, S.A.U.- Instalación de Moncada y Reixac","LafargeHolcim España,SAU Ins.Montcada y Reixac",1.0,317357.0,False,321027.0,True
+Holcim,FR,Holcim Haut Rhin,HOLCIM HAUT RHIN - Usine d'Altkirch,1.0,201136.0,False,207104.0,True
+Holcim,HR,Holcim Hrvatska,Holcim (Hrvatska) d.o.o.,1.0,252172.0,False,253446.0,True
+Holcim,HU,Holcim Magyarország Kft.,Királyegyházi Cementgyár,1.0,80368.0,False,290149.0,True
+Holcim,PL,Holcim Polska S.A. - Cementownia Małogoszcz,Holcim Polska S.A. - Cementownia Małogoszcz,1.0,782196.0,True,845997.0,True
+Holcim,PL,Holcim Polska S.A. oddział w Bielawach,Holcim Polska S.A. oddział w Bielawach,1.0,967930.0,False,934494.0,True
+Holcim,AT,Lafarge Perlmooser Mannersdorf,Holcim Mannersdorf,1.0,432297.0,False,520879.0,True
+Holcim,AT,Lafarge Perlmooser Retznei,Holcim Retznei,1.0,264932.0,False,272659.0,True
+Holcim,FR,Lafarge Ciments - Usine de Cruas,Lafarge Ciments - Usine de Cruas,1.0,39673.0,False,46844.0,True
+Holcim,FR,Lafarge Ciments - Usine de La Malle,Lafarge Ciments - Usine de La Malle,1.0,129384.0,False,249889.0,True
+Holcim,FR,Lafarge Ciments - Usine de Martres Tolosane,Lafarge Ciments - Usine de Martres Tolosane,1.0,327110.0,False,352484.0,True
+Holcim,FR,Lafarge Ciments - Usine de Port La Nouvelle,Lafarge Ciments - Usine de Port La Nouvelle,1.0,405318.0,False,388561.0,True
+Holcim,FR,Lafarge Ciments - Usine de Val d'Azergues,Lafarge Ciments - Usine de Val d'Azergues,1.0,220168.0,False,216576.0,True
+Holcim,FR,Lafarge Ciments - Usine du Teil,Lafarge Ciments - Usine du Teil,1.0,494861.0,False,482243.0,True
+Holcim,FR,Lafarge Ciments Usine St Pierre La Cour,Lafarge Ciments- Usine de St Pierre La Cour,1.0,784744.0,True,809749.0,True
+Holcim,DE,92 - Anlagenkonto,Werk Lägerdorf,1.0,816206.0,False,899463.0,True
+Holcim,DE,93 - Anlagenkonto,Werk Höver,1.0,482790.0,False,554583.0,True
+Holcim,DE,130 - Anlagenkonto,Drehrohrofen Dotternhausen,1.0,158393.0,False,426586.0,True
+Holcim,RO,Operator Account,Holcim (Romania) SA,1.0,800368.0,False,926885.0,True
+Holcim,RO,Operator Account,Holcim (Romania) SA,1.0,958172.0,False,1017176.0,True
+Norsk Hydro,NO,Hydro Aluminium AS Husnes Aluminiumsverk,Hydro Aluminium AS Husnes Aluminiumsverk,1.0,253516.0,False,262700.0,True
+Norsk Hydro,NO,Hydro Aluminium AS Høyanger aluminiumsverk,Hydro Aluminium AS Høyanger aluminiumsverk,1.0,110355.0,False,101523.0,True
+Norsk Hydro,NO,Hydro Aluminium AS Karmøy aluminiumsverk,Hydro Aluminium AS Karmøy aluminiumsverk,1.0,373314.0,False,306891.0,True
+Norsk Hydro,NO,Hydro Aluminium AS Sunndal aluminiumsverk,Hydro Aluminium AS Sunndal aluminiumsverk,1.0,655392.0,False,607928.0,True
+Norsk Hydro,NO,Hydro Aluminium AS Årdal Metallverk Karbon,Hydro Aluminium AS Årdal Karbon,1.0,94484.0,False,65831.0,True
+Norsk Hydro,NO,Hydro Aluminium AS Årdal metallverk,Hydro Aluminium AS Årdal metallverk,1.0,330986.0,False,294032.0,True
+Norsk Hydro,LU,HYDRO ALUMINIUM CLERVAUX,HYDRO ALUMINIUM CLERVAUX,1.0,18070.0,False,16737.0,True
+Norsk Hydro,ES,"Hydro Aluminium Iberia, SAU","Hydro Aluminium Iberia, SAU",1.0,15326.0,False,0.0,True

@@ -212,3 +212,53 @@ def tornado(k):
     ergebnis = pd.DataFrame(zeilen)
     ergebnis["Spanne"] = ergebnis["Hoch"] - ergebnis["Tief"]
     return ergebnis.sort_values("Spanne").reset_index(drop=True), in_prozent()
+
+# ======================================================================
+# Ranking: alle Konzerne mit EINHEITLICHEN Annahmen vergleichen
+# ======================================================================
+RANKING_DATEI = os.path.join(os.path.dirname(__file__), "ranking_daten.json")
+RANKING_LOKAL = os.path.join(LOKAL_ORDNER, "ranking_lokal.json")
+
+EINHEITLICH = {"wacc": 0.08, "steuersatz": 0.25, "reduktion_bis_2030": 0.0, "preis_2030": 100,
+               "anstieg": 5.4, "weitergabe": 0.40, "zielerreichung": 0.65, "cbam": "Geltendes Recht"}
+
+
+def ranking_laden():
+    """Daten für das Ranking: öffentliche Datei im Repo plus (falls vorhanden) lokale Datei."""
+    daten = {}
+    for pfad in (RANKING_DATEI, RANKING_LOKAL):
+        if os.path.exists(pfad):
+            with open(pfad, encoding="utf-8") as f:
+                daten.update(json.load(f)["konzerne"])
+    return daten
+
+
+def ranking(daten, **aenderung):
+    """Barwert der zusätzlichen CO2-Kosten je Konzern bei gleichen Annahmen für alle.
+    Emissionen bleiben bis 2030 auf dem Stand 2025 (keine Firmenpläne), damit nur
+    das heutige CO2-Risiko verglichen wird."""
+    a = {**EINHEITLICH, **aenderung}
+    zeilen = []
+    for name, x in daten.items():
+        k = {"emissionen_2025": x["emissionen_2025"], "deckungsgrad": x["deckungsgrad"],
+             "reduktion_bis_2030": a["reduktion_bis_2030"], "steuersatz": a["steuersatz"],
+             "wacc": a["wacc"]}
+        tabelle = jahresrechnung(k, a["preis_2030"], a["anstieg"], a["weitergabe"],
+                                 a["zielerreichung"], CBAM_PFADE[a["cbam"]])
+        barwert = barwert_gesamt(k, tabelle)
+        zukauf = tabelle["Zukauf"]
+        erstes_jahr = int(zukauf[zukauf > 0].index.min()) if (zukauf > 0).any() else None
+        uw = None
+        if "boersenwert" in x:
+            uw = x["boersenwert"] + x["nettofinanzschulden"] + x["pensionen"]
+        zeilen.append({"Konzern": name, "Branche": x["branche"],
+                       "Emissionen 2025 (Mt)": x["emissionen_2025"],
+                       "Deckungsgrad": x["deckungsgrad"], "Erster Zukauf": erstes_jahr,
+                       "Barwert CO2 (Mrd. €)": barwert / 1000,
+                       "Unternehmenswert (Mrd. €)": uw / 1000 if uw else None,
+                       "Anteil am Unternehmenswert": barwert / uw if uw else None,
+                       "Anteil unsicher zugeordnet": x["anteil_unsicher"]})
+    ergebnis = pd.DataFrame(zeilen).sort_values(["Anteil am Unternehmenswert", "Barwert CO2 (Mrd. €)"],
+                                                ascending=False, na_position="last")
+    ergebnis.insert(0, "Rang", range(1, len(ergebnis) + 1))
+    return ergebnis.reset_index(drop=True)

@@ -91,3 +91,34 @@ Adjustable in the app under "Company scenarios". Default values = base case; the
 | Spin-off: share of enterprise value | 0 % | Enterprise value × (1 − share), max. 90 % | Own assumption, not derived from the report |
 
 Check (20 Oct 2026): with default values, the annual table, Monte Carlo and tornado are identical to the results before this change.
+
+# Ranking (all companies, common assumptions)
+
+Shown on the page "Ranking". Purpose: compare carbon exposure across companies, not to value each company in detail.
+
+| Assumption | Value | Rationale |
+|---|---|---|
+| Emissions until 2030 | constant at 2025 level | Same starting point for all; company plans (e.g. electric arc furnaces) excluded |
+| Discount rate | 8 % | Common rate for all companies (adjustable on the page) |
+| Tax rate | 25 % | Common rate |
+| Pass-through, carbon price, CBAM path | as in the main model (40 %, €100/t, current law) | Adjustable on the page |
+| Enterprise value | market cap (Oct 2026) + net financial debt + pensions | Same formula as the main model |
+| Currency | ECB reference rates 31 Dec 2025 (USD 1.1750, CHF 0.9314, SEK 10.8215, NOK 11.8430 per €) | Balance sheet date |
+
+| Company | Sector | Auditor | EU ETS 2025 (Mt) | Coverage | Market cap (€m) | Net financial debt (€m) | Pensions (€m) |
+|---|---|---|---|---|---|---|---|
+| Thyssenkrupp | Steel | KPMG | 17.80 | 105 % | 8,634 | −4,862 | 5,298 |
+| Salzgitter | Steel | EY | 8.84 | 93 % | 2,574 | 954 | 1,408 |
+| voestalpine | Steel | Deloitte | 12.26 | 77 % | 7,817 | 1,300 | 817 |
+| SSAB | Steel | EY | 8.57 | 91 % | 9,270 | −1,072 | n/a |
+| ArcelorMittal | Steel | EY | 28.31 | 133 % | 42,410 | 6,750 | 2,150 |
+| Holcim | Cement | EY | 11.96 | 109 % | 38,040 | 4,064 | 283 |
+| Norsk Hydro | Aluminium | KPMG | 1.85 | 89 % | 14,050 | 1,537 (adjusted, incl. pensions) | – |
+
+Detailed sources per figure: `src/ranking_daten.json`. Installation list: `ergebnisse/ranking_anlagen.csv`. Figures marked [prüfen] there still need to be verified.
+
+Data decisions:
+- Salzgitter: 49 % of emissions with uncertain assignment (power plant Hallendorf; 30 % share in HKM).
+- Thyssenkrupp: the ranking uses common assumptions (8 % WACC, no reductions until 2030) and therefore shows a higher share (≈71 %) than the detailed model (48 %).
+- ArcelorMittal: coverage of 133 % partly reflects allowances for waste gases delivered to third-party power plants; exposure probably understated. German sites (Bremen, Eisenhüttenstadt, Duisburg) matched via anonymised accounts – uncertain.
+- Companies are only published if their auditor could be verified and is not the author's employer.

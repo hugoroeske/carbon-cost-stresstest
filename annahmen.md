@@ -110,7 +110,7 @@ Shown on the page "Ranking". Purpose: compare carbon exposure across companies, 
 | Thyssenkrupp | Steel | KPMG | 17.80 | 105 % | 8,634 | −4,862 | 5,298 |
 | Salzgitter | Steel | EY | 8.84 | 93 % | 2,574 | 954 | 1,408 |
 | voestalpine | Steel | Deloitte | 12.26 | 77 % | 7,817 | 1,300 | 817 |
-| SSAB | Steel | EY | 8.57 | 91 % | 9,270 | −1,072 | n/a |
+| SSAB | Steel | EY | 8.57 | 91 % | 9,216 (A 295.97m × €9.17 + B 700.65m × €9.28) | −1,072 | n/a |
 | ArcelorMittal | Steel | EY | 28.31 | 133 % | 42,410 | 6,750 | 2,150 |
 | Holcim | Cement | EY | 11.96 | 109 % | 38,040 | 4,064 | 283 |
 | Norsk Hydro | Aluminium | KPMG | 1.85 | 89 % | 14,050 | 1,537 (adjusted, incl. pensions) | – |

@@ -3,8 +3,8 @@ KI-Extraktion: Gemini liest Kennzahlen aus einem Geschäftsbericht –
 mit Seitenzahl und wörtlichem Zitat als Prüfspur.
 Danach prüft das Skript jede Antwort automatisch gegen annahmen.md.
 
-Aufruf im Terminal:  python src/ki_extraktion.py heidelberg
-                     python src/ki_extraktion.py thyssenkrupp
+Aufruf im Terminal:  python src/ki_extraktion.py thyssenkrupp
+Weitere Berichte können in lokal/berichte_lokal.py stehen (nicht im Repo).
 """
 import json
 import os
@@ -26,30 +26,6 @@ PAUSE = 5                              # Sekunden zwischen Anfragen (Free-Tier-L
 # --- Je Bericht: Datei, Geschäftsjahr und die gesuchten Kennzahlen -------
 # Kennzahl: (Suchbegriffe, Referenzwert aus annahmen.md = von Hand geprüft)
 BERICHTE = {
-    "heidelberg": {
-        "name": "Heidelberg Materials",
-        "geschaeftsjahr": "2025",
-        "pdf": "data/raw/HM_GNB25_de.pdf",
-        "cache": "data/processed/seiten_HM_GNB25.json",
-        "ergebnis": "ergebnisse/ki_extraktion_heidelberg.csv",
-        "kennzahlen": {
-            "Umsatz 2025 (Mio. €)":
-                (["Umsatzerlöse", "Revenue"], 21460),
-            "Operatives Ergebnis VOR Sondereffekten 2025 (Mio. €), also bereinigtes EBIT; "
-            "bei Heidelberg 'Ergebnis des laufenden Geschäftsbetriebs (RCO)'":
-                (["Ergebnis des laufenden Geschäftsbetriebs", "bereinigt", "adjusted EBIT"], 3381),
-            "Abschreibungen 2025 (Mio. €)":
-                (["Abschreibungen", "Depreciation"], 1298),
-            "Effektive Steuerquote 2025 (%)":
-                (["Steuerquote", "tax rate"], 25.2),
-            "Free Cashflow 2025 (Mio. €)":
-                (["Free Cashflow", "free cash flow"], 2109),
-            "Nettofinanzschulden 31.12.2025 (Mio. €)":
-                (["Nettofinanzschulden", "net debt"], 5715),
-            "Absolute Brutto-Scope-1-Emissionen Konzern 2025 (Mio. t CO2e)":
-                (["Scope-1", "Scope 1"], 61.3),
-        },
-    },
     "thyssenkrupp": {
         "name": "Thyssenkrupp",
         "geschaeftsjahr": "2024/2025 (1.10.2024 bis 30.9.2025)",
@@ -75,6 +51,14 @@ BERICHTE = {
         },
     },
 }
+
+# Lokale Zusatzberichte in lokal/berichte_lokal.py – der Ordner ist per .gitignore vom Repo ausgeschlossen
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
+try:
+    from lokal.berichte_lokal import BERICHTE_LOKAL
+except ImportError:
+    BERICHTE_LOKAL = {}
+BERICHTE.update(BERICHTE_LOKAL)
 
 
 # --- Antwortformat, das die KI ausfüllen MUSS ----------------------------

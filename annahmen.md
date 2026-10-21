@@ -1,135 +1,93 @@
-# Annahmen – Heidelberg Materials (Geschäftsjahr 2025)
+# Assumptions and audit trail
 
-Quelle: Geschäfts- und Nachhaltigkeitsbericht 2025 (deutsch)
+Every figure used in the model, with its source and page. Page numbers refer to the PDF of the respective annual report (printed page = PDF page unless stated otherwise). Amounts in € million unless stated otherwise.
 
-## Finanzen
+# Model-wide assumptions
 
-| Kennzahl | Wert 2025 | Einheit | Seite |
+| Assumption | Value | Unit | Source / rationale |
 |---|---|---|---|
-| Umsatz | 21.460 | Mio. € | 338 |
-| RCOBD (Ergebnis vor Abschreibungen, ~EBITDA) | 4.679 | Mio. € | 338 |
-| RCO (Ergebnis des laufenden Geschäftsbetriebs, ~EBIT) | 3.381 | Mio. € | 338 |
-| Abschreibungen | 1.298 | Mio. € | 214 |
-| Investitionen in Sachanlagen und immaterielles Vermögen | 1.341 | Mio. € | 338 |
-| Operativer Cashflow | 3.255 | Mio. € | 338 |
-| Free Cashflow (vom Konzern ausgewiesen) | 2.109 | Mio. € | 338 |
-| Effektive Steuerquote | 25,2 | % | 241 |
-| Nettofinanzschulden | 5.715 | Mio. € | 338 |
-| RCO Europa | 1.395 | Mio. € | 339 |
-| Pensionsrückstellungen | 624 | Mio. € | 57 |
+| Average carbon price 2025 | 73 | €/t | Volume-weighted average EUA price 2025: €73.43/t (Instrat, EU ETS 2025 summary) |
+| Carbon price 2030 (default) | 100 | €/t | Own assumption, adjustable in the app |
+| Carbon price increase after 2030 | +5.40 | €/t per year | Own extrapolation (2050: ~208 €/t) |
+| Phase-out of free allocation | see `src/modell.py` | | Current law vs. Commission proposal COM(2026) 616 (not adopted) |
+| Emissions after 2030 | linear path | | From the 2030 level towards the 2050 target, scaled by "climate target achieved" |
+| Terminal value | perpetuity | | Cost 2050 after tax ÷ WACC |
+| Pass-through to customers (default) | 40 | % | Historically 20–40 % for cement (Öko-Institut/CE Delft 2015); likely higher with CBAM |
+| Enterprise value | | | Market capitalisation + net financial debt + pension provisions (same formula for all companies) |
 
-## CO₂
+# Thyssenkrupp (fiscal year 2024/2025, balance sheet date 30 Sep 2025)
 
-| Kennzahl | Wert 2025 | Einheit | Seite |
+Source: annual report 2024/2025 (German). Auditor: KPMG.
+
+| Figure | Value | Unit | Page |
 |---|---|---|---|
-| Brutto-Scope-1-Emissionen Konzern | 61,3 | Mio. t CO₂e | 120 (ESRS E1-6) |
-| davon Geschäftsbereich Zement | 59,4 | Mio. t CO₂e | 117 |
-| Netto-Scope-1-Emissionen (weltweit) | 55,0 | Mio. t CO₂ | 117 |
-| Davon in Ländern mit CO₂-Preis (v. a. Europa) | 22,2 | Mio. t CO₂e | 121 |
-| Durchschnittlicher CO₂-Preis 2025 | 73 | €/t | 48 |
-| Interne Preiserwartung von Heidelberg für 2030 | ~100 | €/t | 121 |
+| Revenue | 32,837 | €m | 2, 329 |
+| Adjusted EBIT | 640 | €m | 2 |
+| EBIT | 76 | €m | 329 |
+| EBITDA | 1,490 | €m | 329 |
+| Free cash flow before M&A | 363 | €m | 2, 330 |
+| Net financial assets (net cash) | 4,862 | €m | 2, 330 |
+| Pension provisions | 5,298 | €m | 329 |
+| Market capitalisation 30 Sep 2025 | 7,271 | €m | 2 |
+| Tax rate Germany (instead of effective 48.7 %) | 31.6 | % | 321 |
+| WACC after tax, Steel Europe (impairment test Q4) | 7.6 | % | 259 (Q1: 8.0 %, p. 258) |
+| WACC per value management (tkVA) group / Steel Europe, probably before tax | 11.0 / 12.0 | % | 48 |
+| Scope 1 gross | 19.8 | Mt CO₂e | 123 |
+| Thereof covered by internal carbon price | ~16 | Mt CO₂e | 124 |
+| Internal carbon price | up to ~150 (2035), ~250 (2045) | €/t | 124 |
+| Target Scope 1+2 | 21.0 → 15.6 Mt by 2029/30 | | 123 |
+| Climate target steel | −30.1 % per t hot strip by 2030 vs. 2018 | | 118 |
+| Share in HKM (joint operation) | 50 | % | 268 |
+| Shares outstanding | 622.5 | million | 17 |
 
-## Klimaziele 2030
+## Model decisions Thyssenkrupp
 
-| Ziel | Wert | Seite |
-|---|---|---|
-| Spezifische Netto-Scope-1-Emissionen | < 400 kg CO₂/t (2025: 512) | 42 |
-| Klinkeranteil im Zement | 64 % (2025: 68,2 %) | 114 |
-| Alternative Brennstoffe | > 50 % (2025: 34,1 %) | 114 |
-
-## Datenbereinigung EU-ETS (Prüfspur)
-
-| Entscheidung | Begründung |
+| Decision | Rationale |
 |---|---|
-| Nur Branchencode 29 (Zementklinker) | Textsuche fand Heizkraftwerk der Stadt Heidelberg (Code 20) – falsch-positiv |
-| Nur offene Anlagen | Werk Cruas (FR) am 26.02.2025 geschlossen |
-| Fehlende Emissionen 2025 = Wert 2024 | Devnya, Beaucaire, Villiers-au-Bouin: offen, 2025 noch nicht gemeldet; als „geschätzt“ markiert |
-| Geisterwerke nicht fortschreiben | Añorga, Beffes, Gargenville: Zuteilung ohne Produktion, wird von der EU gekürzt |
-| Offener Punkt | Deutsche Werke fehlen komplett (Betreibername ohne „Heidelberg“) → KI-Zuordnung |
-| WACC nach Steuern | 8,1 | % | 248 (CGU Deutschland) |
-| CBAM-Ausstieg Gratiszuteilung | siehe Tabelle | | geltendes Recht vs. Vorschlag COM(2026) 616 |
-| Börsenwert | 25.300 | Mio. € | 143,80 € × 175,8 Mio. Aktien, onvista 19.10.2026 |
-| Unternehmenswert | 31.015 | Mio. € | Börsenwert + Nettofinanzschulden |
-| CO₂-Preis nach 2030 | +5,40 | €/t pro Jahr | eigene Fortschreibung (2050: ~208 €/t) |
-| Emissionen nach 2030 | Szenarien | | A: linear auf 0 bis 2050 (Net-Zero-Ziel); B: konstant auf Niveau 2030 |
-| Restwert (nur Szenario B) | ewige Rente | | Kosten 2050 nach Steuern ÷ WACC |
-| Weitergabe an Kunden | 0 / 30 / 60 / 100 | % | historisch 20–40 % bei Zement (Öko-Institut/CE Delft 2015); höher mit CBAM |
+| Tax rate 31.6 % instead of effective 48.7 % | Effective rate distorted by valuation allowances on deferred taxes (p. 321) |
+| WACC 7.6 % (Q4 test), not 8.0 % (Q1 test) | Same reporting date as all other figures |
+| Enterprise value incl. pensions | Pensions are economically debt-like |
+| Annual reduction 5.8 % until 2030 | (15.6 / 21.0)^(1/5) − 1; depends heavily on the DR plant in Duisburg |
+| Spin-off of Steel Europe as a scenario | Sale to Jindal called off in May 2026; target: standalone with a minority stake |
 
-## KI-Extraktion (Gemini Flash), Heidelberg-Bericht 2025
+## Market value
 
-| Lauf | Genauigkeit | Prüfspur | Änderung |
+| Figure | Value | Unit | Source |
 |---|---|---|---|
-| 1 | 4/7 | 7/7 | Ausgangsversion |
-| 2 | 7/7 | 7/7 | Vorzeichen ignoriert; Referenz Scope 1 = Konzernwert 61,3 (S. 120); Frage präzisiert: RCO statt EBIT (EBIT = 3.118, S. 49) |
+| Market capitalisation | 8,634 | €m | finanzen.net, 20 Oct 2026: 622.5m shares × €13.87 |
+| Enterprise value (market cap + pensions − net cash) | 9,070 | €m | calculated |
 
-Hinweis: Lauf 2 wurde am selben Bericht nachgeschärft (Gefahr von Overfitting). Der eigentliche Test folgt an Berichten anderer Konzerne.
+## EU ETS matching
 
-# Annahmen – thyssenkrupp (Geschäftsjahr 2024/2025, Stichtag 30.09.2025)
+Boundary as in the report: consolidation scope of financial reporting, HKM pro rata 50 % (p. 120). Matching via a fixed table in `src/ets_thyssenkrupp.py`, because some registry accounts are anonymised.
 
-Quelle: Geschäftsbericht 2024/2025 (deutsch). Abschlussprüfer: KPMG.
-
-| Kennzahl | Wert | Einheit | Seite |
+| Figure | Value | Unit | Source |
 |---|---|---|---|
-| Umsatz | 32.837 | Mio. € | 2, 329 |
-| Bereinigtes EBIT | 640 | Mio. € | 2 |
-| EBIT | 76 | Mio. € | 329 |
-| EBITDA | 1.490 | Mio. € | 329 |
-| Free Cashflow vor M&A | 363 | Mio. € | 2, 330 |
-| Netto-Finanzguthaben | 4.862 | Mio. € | 2, 330 |
-| Pensionsrückstellungen | 5.298 | Mio. € | 329 |
-| Marktkapitalisierung 30.09.2025 | 7.271 | Mio. € | 2 |
-| Steuersatz Deutschland (statt effektiv 48,7 %) | 31,6 | % | 321 |
-| WACC Konzern / Steel Europe | 11,0 / 12,0 | % | 48 |
-| Scope 1 brutto | 19,8 | Mio. t CO₂e | 123 |
-| Davon unter internem CO₂-Preis (EU-ETS) | ~16 | Mio. t CO₂e | 124 |
-| Interner CO₂-Preis | bis ~150 (2035), ~250 (2045) | €/t | 124 |
-| Klimaziel Stahl | −30,1 % je t Warmband bis 2030 ggü. 2018 | | 118 |
-| Anteil HKM | 50 | % | 268 |
+| Emissions 2025 (incl. 50 % HKM) | 17.80 | Mt | EU registry |
+| Free allocation 2025 (incl. 50 % HKM) | 18.61 | Mt | EU registry |
+| Coverage 2025 | 105 | % | calculated |
+| Reconciliation: ETS 2024 vs. reported Scope 1 | 19.48 vs. 19.8 (−1.6 %) | Mt | p. 123 (the report uses ETS calendar year 2024) |
 
-## Modellentscheidungen thyssenkrupp
+Uncertain assignments (plausibility-checked through reconciliation, not proven): coke plant Schwelgern (account 83), power plant Hamborn unit 5, boiler plant Hamborn, "Glocke Duisburg" (account 71, HKM).
+Not assigned: small Duisburg installations with about 0.3 Mt (e.g. "Stahlwerk Duisburg").
+Note: free allocation sits with the steelworks, emissions with the power plants that burn its waste gases – therefore the evaluation is per site.
 
-| Entscheidung | Begründung |
-|---|---|
-| Steuersatz 31,6 % statt effektiv 48,7 % | Effektive Quote durch Wertberichtigungen latenter Steuern verzerrt (S. 321) |
-| Unternehmenswert inkl. Pensionen | Pensionen sind wirtschaftlich schuldenähnlich |
-| Offen: Deckungsgrad Gratiszuteilung | Standortweise Aggregation im EU-ETS nötig (Hüttenwerk + Kraftwerke + Kokerei) |
-| Offen: aktueller Börsenwert | Stand Okt. 2026 recherchieren |
-| Offen: Szenario Abspaltung Steel Europe | Verkauf an Jindal im Mai 2026 abgebrochen; Ziel: Verselbstständigung mit Minderheitsanteil |
+# AI extraction (Gemini Flash)
 
-| WACC nach Steuern, Steel Europe (Werthaltigkeitstest Q4) | 7,6 | % | 259 |
-| WACC laut Wertmanagement (tkVA) Konzern / Steel Europe, vermutlich vor Steuern | 11,0 / 12,0 | % | 48 |
+| Run | Report | Accuracy | Audit trail | Note |
+|---|---|---|---|---|
+| 1–2 | Pilot report (not published) | 4/7 → 7/7 | 7/7 | Prompt refined on the same report – risk of overfitting |
+| 3 | Thyssenkrupp 2024/2025 | 6/7 | 6/7 | Out-of-sample test with unchanged code. Pensions: AI took 5,162 (p. 278) instead of 5,298 (balance sheet, p. 329). WACC: correct value 7.6 % from Q4 despite four candidate values; quote check failed because of PDF text formatting. Results: `ergebnisse/ki_extraktion_thyssenkrupp.csv` |
 
-## Thyssenkrupp – EU-ETS-Zuordnung
+# Company scenarios (all companies)
 
-Abgrenzung wie im Bericht: Bilanzierungskreis der Finanzberichterstattung, HKM quotal 50 % (S. 120).
-Zuordnung über feste Tabelle in `src/ets_thyssenkrupp.py`, weil Konten teils anonym sind.
+Adjustable in the app under "Company scenarios". Default values = base case; the result does not change.
 
-| Größe | Wert | Einheit | Quelle |
+| Scenario | Default | Effect in the model | Example |
 |---|---|---|---|
-| Emissionen 2025 (inkl. 50 % HKM) | 17,80 | Mio. t | ETS-Register |
-| Gratiszuteilung 2025 (inkl. 50 % HKM) | 18,61 | Mio. t | ETS-Register |
-| Deckungsgrad 2025 | 105 | % | berechnet |
-| Abstimmung: ETS 2024 vs. Bericht Scope 1 | 19,48 vs. 19,8 (−1,6 %) | Mio. t | S. 123 |
-| Aktien im Umlauf | 622,5 | Mio. Stück | S. 17 |
+| Delay of emission reductions | 0 years | Emissions stay at the 2025 level for n years, then the path runs shifted by n years; the 2050 target is not fully reached by 2050 | DR plant in Duisburg is delayed |
+| Share of emissions with a carbon price | 100 % | Emissions and free allocation × share | Plants outside the EU; already reflected for Thyssenkrupp (17.8 Mt EU ETS) |
+| Spin-off: share of emissions | 0 % | Emissions and free allocation × (1 − share) | Steel Europe as a standalone company |
+| Spin-off: share of enterprise value | 0 % | Enterprise value × (1 − share), max. 90 % | Own assumption, not derived from the report |
 
-Unsichere Zuordnungen (über Abstimmung plausibilisiert, nicht bewiesen):
-Kokerei Schwelgern (Konto 83), Kraftwerk Hamborn Block 5, Dampfkesselanlage Hamborn, Glocke Duisburg (Konto 71, HKM).
-Nicht zugeordnet: kleine Duisburger Anlagen mit rund 0,3 Mio. t (u. a. „Stahlwerk Duisburg“).
-Hinweis: Zuteilung liegt beim Hüttenwerk, Emissionen bei den Kraftwerken, daher Auswertung je Standort.
-
-| Börsenwert Finanzen.net/ 20/10/2026 | 8.634 | Mio. € | 622,5 Mio. Aktien × 13,87 € |
-| Unternehmenswert (Börsenwert + Pensionen − Netto-Finanzguthaben) | 9.070 | Mio. € | berechnet |
-| Reduktion Emissionen bis 2030 | 5,8 | % p. a. | aus Ziel S. 123 |
-
-# Unternehmensszenarien (alle Konzerne)
-
-Einstellbar in der App unter „Unternehmensszenarien“. Standardwerte = Basisfall, das Ergebnis ändert sich dann nicht.
-
-| Szenario | Standard | Wirkung im Modell | Beispiel |
-|---|---|---|---|
-| Verzögerung der Emissionssenkung | 0 Jahre | Emissionen bleiben n Jahre auf dem Stand 2025, danach läuft der Pfad um n Jahre verschoben; das Ziel 2050 wird bis 2050 nicht ganz erreicht | DR-Anlage Duisburg verzögert sich |
-| Anteil Emissionen mit CO₂-Preis | 100 % | Emissionen und Gratiszuteilung × Anteil | Werke außerhalb der EU; bei Heidelberg (22,2 Mio. t) und Thyssenkrupp (17,8 Mio. t) schon berücksichtigt |
-| Abspaltung: Anteil Emissionen | 0 % | Emissionen und Gratiszuteilung × (1 − Anteil) | Verselbstständigung von Steel Europe |
-| Abspaltung: Anteil Unternehmenswert | 0 % | Unternehmenswert × (1 − Anteil), höchstens 90 % | eigene Annahme, nicht aus dem Bericht berechnet |
-
-Prüfung (20.10.2026): Bei Standardwerten sind Jahrestabelle, Monte Carlo und Tornado für beide Konzerne exakt gleich wie vor der Änderung.
+Check (20 Oct 2026): with default values, the annual table, Monte Carlo and tornado are identical to the results before this change.

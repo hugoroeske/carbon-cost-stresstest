@@ -1,50 +1,68 @@
-# CO₂-Stresstest für europäische Industriekonzerne
+# CarbonCliff – a carbon cost stress test for European heavy industry
 
-**Wie stark belasten steigende CO₂-Preise und das Auslaufen der kostenlosen Zertifikate den Unternehmenswert?**
+**How much enterprise value is at risk when free EU carbon allowances are phased out?**
 
-👉 **Live-App:** https://carbon-cost-stresstest-vmyx7wluub57ehjqgr7lgi.streamlit.app
+👉 **Live app:** https://carbon-cost-stresstest-mkabmepkuodutcbnnm2x2l.streamlit.app
 
-## Ergebnis (Pilot: Heidelberg Materials)
+## Why this matters
 
-- Im mittleren Szenario entsprechen die künftigen CO₂-Kosten **rund 15 % des Unternehmenswerts** (Median aus 10.000 Szenarien).
-- Mit 90 % Wahrscheinlichkeit liegt der Wert **zwischen 7 % und 28 %**, in etwa jedem vierten Szenario über 20 %.
-- Die stärksten Treiber sind **Preissetzungsmacht** (Weitergabe an Kunden) und **Dekarbonisierungstempo**, beide vom Unternehmen selbst beeinflussbar. Der politische CBAM-Pfad macht nur rund 2 Prozentpunkte aus.
-- Heute deckt die Gratiszuteilung die Emissionen fast vollständig. **Das Risiko liegt fast ausschließlich in der Zukunft** (ab 2029).
+Steel, cement and fertiliser producers still receive most of their EU emission allowances for free. Under the Carbon Border Adjustment Mechanism (CBAM), this free allocation is phased out between 2026 and 2034. Today's financial statements barely show the resulting cost: in 2025, Thyssenkrupp received more allowances than it emitted. CarbonCliff turns this future cost into one number per company – its present value as a share of enterprise value – and shows how uncertain that number is.
 
-![Monte-Carlo-Verteilung](ergebnisse/monte_carlo_histogramm.png)
-![Sensitivitätsanalyse](ergebnisse/tornado.png)
+## Results (pilot: Thyssenkrupp)
 
-## Methode
+Default assumptions: carbon price €100/t in 2030, 40 % pass-through to customers, current law.
 
-1. **Daten:** Anlagen-Emissionen und Gratiszuteilung aus dem EU-Emissionshandelsregister (Union Registry), Finanzkennzahlen aus dem Geschäftsbericht 2025.
-2. **Modell:** Jahresrechnung 2026–2050 mit schrumpfender Gratiszuteilung (CBAM: geltendes Recht vs. Kommissionsvorschlag 2026), Steuern, Diskontierung mit dem WACC des Konzerns und Restwert.
-3. **Monte-Carlo-Simulation** über CO₂-Preis, Preisanstieg, Weitergabe an Kunden, Zielerreichung und CBAM-Pfad, dazu eine **Tornado-Sensitivitätsanalyse**.
-4. **KI-Extraktion:** Gemini liest Kennzahlen aus Geschäftsberichten, jeweils mit **Seitenzahl und wörtlichem Zitat als Prüfspur**. Jede Antwort wird automatisch gegen eine manuell geprüfte Referenz abgeglichen und das Zitat auf der genannten Seite gesucht (Halluzinations-Check).
+- Future carbon costs are worth **€4.3bn today, or 48 % of enterprise value**.
+- Across 10,000 Monte Carlo scenarios the **median is 39 %**; the 90 % range is **18 % to 73 %**.
+- Free allocation covers **105 %** of 2025 emissions, so the model expects **no purchases until 2029** – the cost appears from 2030.
+- If emission reductions are delayed by **5 years** (e.g. the planned DR plant), the share rises to **66 %**.
+- The strongest drivers are **pass-through to customers** and **decarbonisation progress**, both partly under the company's control. The choice of CBAM path matters least.
 
-Alle Annahmen mit Quelle: [`annahmen.md`](annahmen.md)
+![Monte Carlo distribution](ergebnisse/thyssenkrupp_monte_carlo.png)
+![Sensitivity analysis](ergebnisse/thyssenkrupp_tornado.png)
 
-## Projektstruktur
+These are model results under stated assumptions, not a forecast of share prices and not investment advice.
 
-| Datei | Inhalt |
+## Method
+
+1. **Data:** installation-level verified emissions and free allocation from the EU Union Registry; financial figures from annual reports.
+2. **ETS matching with reconciliation:** installations are assigned to the company (joint ventures pro rata) and summed per site, then reconciled with the reported Scope 1 emissions (Thyssenkrupp: 19.48 vs. 19.8 Mt, −1.6 %).
+3. **Model:** annual cost path 2026–2050 with declining free allocation (CBAM: current law vs. Commission proposal 2026), taxes, discounting at the company's after-tax WACC, and a terminal value.
+4. **Uncertainty:** Monte Carlo simulation over carbon price, price growth, pass-through, target achievement and CBAM path, plus a tornado sensitivity analysis.
+5. **Company scenarios:** delayed decarbonisation, share of emissions outside the EU ETS, spin-off of a segment.
+6. **AI extraction with an audit trail:** Gemini reads key figures from annual reports and must return the **page number and a verbatim quote**. The code checks automatically that the quote appears on that page; a human then verifies every value before it enters the model (four-eyes principle).
+
+All assumptions with sources: [`annahmen.md`](annahmen.md)
+
+## Project structure
+
+| File | Content |
 |---|---|
-| `app.py` | Web-App (Streamlit) |
-| `src/modell.py` | Kernmodell: Jahresrechnung, Barwert, Monte Carlo |
-| `src/ets_heidelberg.py` | Auswertung des EU-ETS-Registers |
-| `src/ki_extraktion.py` | KI-Extraktion mit automatischer Prüfung |
-| `src/monte_carlo.py` | Simulation und Grafiken |
-| `annahmen.md` | Alle Annahmen, Quellen und Datenentscheidungen |
+| `app.py` | Web app (Streamlit) |
+| `pages/1_Bericht_auswerten.py` | Upload page: analyse a new annual report (runs locally only) |
+| `src/modell.py` | Core model: annual cost path, present value, Monte Carlo, tornado, scenarios |
+| `src/ets_thyssenkrupp.py` | EU ETS matching and reconciliation for Thyssenkrupp |
+| `src/ets_suche.py` | Search the EU ETS registry for a new company |
+| `src/ki_extraktion.py` | AI extraction with automatic quote check |
+| `src/bericht_auswertung.py` | AI extraction for uploaded reports |
+| `annahmen.md` | All assumptions, sources and data decisions |
 
-## Selbst ausführen
+Code comments and variable names are in German.
+
+## Run it yourself
+
+```
 pip install -r requirements.txt
-
 streamlit run app.py
+```
 
-## Grenzen
+## Limitations
 
-- Nur direkte Emissionen (Scope 1) in Ländern mit CO₂-Preis
-- Weitergabe an Kunden als Annahme, ohne Mengeneffekt
-- Investitionskosten der Dekarbonisierung (z. B. CO₂-Abscheidung) nicht enthalten
-- Das Modell misst das Risiko, es ist keine Kursprognose und keine Anlageberatung
+- Only direct emissions (Scope 1) under the EU ETS; carbon prices outside the EU are not modelled.
+- ETS matching is plausibility-checked by reconciliation, not proven.
+- Pass-through to customers is an assumption, without volume effects.
+- Decarbonisation capex (e.g. new plants) is not included.
+- The Commission proposal COM(2026) 616 has not been adopted.
 
 ---
-*Privates Studienprojekt von Hugo Röske (HSBA Hamburg School of Business Administration). Ausschließlich öffentliche Daten.*
+*Private student project by Hugo Röske. Public data only. Not investment advice.*

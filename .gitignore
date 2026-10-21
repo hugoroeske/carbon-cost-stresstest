@@ -6,5 +6,7 @@ __pycache__/
 data/processed/
 
 
-# Heidelberg Materials ist PwC-Mandant: gespeicherte Konzerndaten nicht ins Repo
-konzerne/heidelberg*
+# Nur lokal: Ordner lokal/ (Mandantenschutz, private Notizen) kommt nie ins Repo
+lokal/
+ergebnisse/monte_carlo_histogramm.png
+ergebnisse/tornado.png

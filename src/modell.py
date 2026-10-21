@@ -9,7 +9,7 @@ import os
 import numpy as np
 import pandas as pd
 
-PREIS_2025 = 73   # €/t, Durchschnitt 2025 (GB Heidelberg S. 48)
+PREIS_2025 = 73   # €/t, Durchschnitt EU-ETS 2025 (Instrat: 73,43 €/t, volumengewichtet)
 
 # Anteil der Gratiszuteilung, der übrig bleibt (CBAM-Faktor); fehlende Jahre = 0
 CBAM_PFADE = {
@@ -20,20 +20,9 @@ CBAM_PFADE = {
                                   2034: .15, 2035: .15, 2036: .15, 2037: .15},
 }
 
-# Je Konzern die festen Annahmen (Werte in Mio. € bzw. Mio. t)
+# Je Konzern die festen Annahmen (Werte in Mio. € bzw. Mio. t).
+# Weitere Konzerne liegen als JSON-Dateien in konzerne/ bzw. lokal/ (lokal/ ist nicht im Repo).
 KONZERNE = {
-    "Heidelberg Materials": {
-        "emissionen_2025": 22.2,      # Länder mit CO2-Preis (GB S. 121)
-        "reduktion_bis_2030": 0.048,  # Ziel 512 -> 400 kg/t (GB S. 42)
-        "deckungsgrad": 1.00,         # Gratiszuteilung / Emissionen (ETS-Auswertung)
-        "steuersatz": 0.252,          # GB S. 241
-        "wacc": 0.081,                # GB S. 248
-        "rco_2025": 3381,             # GB S. 338
-        "boersenwert": 25300,         # onvista, 19.10.2026
-        "nettofinanzschulden": 5715,  # GB S. 338
-        "pensionen": 624,             # GB S. 57 / Bilanz S. 216
-        "pruefspur": "ergebnisse/ki_extraktion_heidelberg.csv",
-    },
     "Thyssenkrupp": {
         "emissionen_2025": 17.80,     # ETS 2025 inkl. 50 % HKM (src/ets_thyssenkrupp.py)
         "reduktion_bis_2030": 0.058,  # Ziel Scope 1+2: 21,0 -> 15,6 Mio. t bis 2029/30 (GB S. 123)
@@ -51,6 +40,8 @@ KONZERNE = {
 
 # Konzerne, die über die Upload-Seite gespeichert wurden (je Konzern eine JSON-Datei)
 KONZERN_ORDNER = os.path.join(os.path.dirname(__file__), "..", "konzerne")
+# Konzerne, die nur auf dem eigenen Rechner erscheinen sollen (Ordner lokal/ ist nicht im Repo)
+LOKAL_ORDNER = os.path.join(os.path.dirname(__file__), "..", "lokal")
 
 
 def konzerne_laden(ordner=KONZERN_ORDNER):
@@ -76,7 +67,7 @@ def konzerne_laden(ordner=KONZERN_ORDNER):
 def alle_konzerne():
     """Fest eingetragene plus gespeicherte Konzerne. Wird bei jedem Neuladen der Seite
     aufgerufen, damit ein frisch gespeicherter Konzern sofort auswählbar ist."""
-    return {**KONZERNE, **konzerne_laden()}
+    return {**KONZERNE, **konzerne_laden(), **konzerne_laden(LOKAL_ORDNER)}
 
 
 JAHRE = range(2026, 2051)
@@ -205,10 +196,10 @@ def tornado(k):
                                  werte["zielerreichung"], werte["cbam"])
         return barwert_gesamt(k, tabelle) / unternehmenswert(k) * 100
 
-    tests = [("CO₂-Preis 2030", "preis_2030", z["preis_2030"]),
-             ("Preisanstieg ab 2030", "anstieg", z["anstieg"]),
-             ("Weitergabe an Kunden", "weitergabe", z["weitergabe"]),
-             ("Erreichung Klimaziel", "zielerreichung", z["ziel"])]
+    tests = [("Carbon price 2030", "preis_2030", z["preis_2030"]),
+             ("Price increase after 2030", "anstieg", z["anstieg"]),
+             ("Pass-through to customers", "weitergabe", z["weitergabe"]),
+             ("Climate target achieved", "zielerreichung", z["ziel"])]
     zeilen = []
     for name, schluessel, werte in tests:
         niedrig, hoch = np.percentile(werte, [5, 95])
@@ -216,7 +207,7 @@ def tornado(k):
         zeilen.append({"Annahme": name, "Tief": min(a, b), "Hoch": max(a, b)})
     a = in_prozent(cbam=CBAM_PFADE["Kommissionsvorschlag 2026"])
     b = in_prozent()
-    zeilen.append({"Annahme": "CBAM-Pfad", "Tief": min(a, b), "Hoch": max(a, b)})
+    zeilen.append({"Annahme": "CBAM path", "Tief": min(a, b), "Hoch": max(a, b)})
 
     ergebnis = pd.DataFrame(zeilen)
     ergebnis["Spanne"] = ergebnis["Hoch"] - ergebnis["Tief"]

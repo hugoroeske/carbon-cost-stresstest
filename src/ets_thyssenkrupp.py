@@ -26,7 +26,7 @@ ANLAGEN = {
     "Kaltwalzwerk 2 mit Nebenanlagen":                     ("Andernach",     1.0, "Kontoname thyssenkrupp Rasselstein"),
 }
 
-# ---------- Block 2: Register einlesen (wie bei Heidelberg) ----------
+# ---------- Block 2: Register einlesen (Kopfzeile über 'REGISTRY_CODE' finden) ----------
 blaetter = pd.read_excel(DATEI, sheet_name=None, header=None)
 for name, roh in blaetter.items():
     roh = roh.map(lambda x: x.strip() if isinstance(x, str) else x)
